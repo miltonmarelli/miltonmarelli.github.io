@@ -1,0 +1,216 @@
+.contbotton{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+ 
+}
+.boton{
+    align-self: center;
+    margin: 1px;
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+    color:#FFffFF;
+    font-size: 200;
+    text-align: center;
+    border: none;
+}
+#boton_1{
+    display: flex;
+    background-color:  #28a745;
+    padding-top: 15px;
+    justify-content: center;
+    align-content: center; 
+    /* text-align: center;   */
+}
+#boton_2{
+    display: flex;
+    background-color: #dc3545;
+    padding-top: 15px;
+    justify-content: center;
+    align-content: center;
+    text-align: center; 
+}
+#boton_3{
+    display: flex;
+    background-color: #ffc107;
+    padding-top: 15px;
+    justify-content: center;
+    align-content: center;
+    text-align: center; 
+}
+.barra1 {
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    margin-top: 0px;
+    flex: 100%;
+    list-style: none;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    background-color: #333;
+}
+.barra1 > li {
+    border-radius: 10px;
+    margin: 1px;
+    border: none;
+    
+}
+.cons{
+    color: gainsboro ;
+    justify-self: start;
+}
+.active1{
+    background-color: rgb(221, 90, 134);
+    margin-top: 2px;
+    text-align: center;
+    color:white;
+    height: 22px;
+    width: 100px;
+    font-size: small;
+    border-radius: 5px;
+    border: none;
+}
+.active2{
+    background-color: rgba(79, 173, 255, 0.932);
+    align-self: center;
+    text-align: center;
+    width: 100px;
+    height: 22px;
+    color:white;
+    font-size: small;
+    border-radius: 5px;
+    border: none;
+}
+.active3{
+    text-align: center;
+    background-color: #9e9e9e;
+    margin: 0 1050px;
+    width: 80px;
+    font-size: small;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+ .tabla,.porcentajes{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+}
+.tabla{
+    background-color: rgb(250, 250, 250);
+    border: 1px solid  #c5c5c5;
+    color: rgb(49, 49, 49);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-top: 0px;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+#sec-contenido{
+    display: flex;
+    margin: 0 50px 50px 30px;
+    max-width: 100%;
+    align-items: start;
+    justify-items: start;
+    align-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* overflow-y: scroll; */
+}
+.botones{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 150px;
+    gap: 4px;
+    align-content: start;
+    justify-content: center;
+}     
+.electores{
+    width: 220px;
+    background-color: #e90d82;
+    border-radius: 10px;
+    color:white;   
+}
+.p_escriturado {
+    width: 220px;
+    background-color: rgb(112, 76, 159);
+    border-radius: 10px;
+    color: white;   
+}
+.mesas_computadas{  
+    background-color:  rgba(79, 173, 255, 0.932);
+    border-radius: 10px;
+    color: white;    
+}
+.icon_botones
+{
+    height: 50px;
+}
+.contenido{
+    border-radius:  2px;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid  #c5c5c5;
+    display: flex;
+    justify-content: space-evenly
+}
+.elecc{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 2px;
+}
+.descrip{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin-right: 50px;
+}
+.porcentajes{
+    display: flex;
+    font-size: x-small;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 1px;
+}
+.candidatos{
+    display: flex;
+    font-size: x-small;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 4px;
+    margin-right: 60px;
+}
+.pala{
+    color: blue;
+    font-size: small;
+}
+.pala-grande{
+    font-size:larger;
+}
+#electores{
+    background-color:#e90d82 ;   
+}
+.svg{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-right: 0px;
+    /* padding: 50px; */
+    margin: 30px;
+    height:200px ;
+    width: 200px;    
+} 
+
+.candidatos > p {
+    margin-bottom: 50px;
+}

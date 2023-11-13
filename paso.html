@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Publicación de Resultados Electorales</title>
+    <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/paso.css" />
+    <script src="pages/paso.js" defer></script>
+    <script src="pages/common.js" defer></script> 
+</head>
+
+<body onload="obtenerPeriodos(), ocultarbotones()">
+    <header>
+        <!--Barra de logo portal-->
+        <a href="index.html" style="text-decoration: none;">
+            <div class="header-page">
+                <img src="img/dine.png" alt="logo" class="logo">
+                <h2 class=" titulosup">Dirección Nacional</h2>
+                <h2 class=" titulosup">Electoral</h2>
+            </div>
+        </a>
+        <!--Barra de menú principal-->
+        <ul class="barra1">
+            <div class="seleccionables">
+                <form action="#">
+                    <select name="año" id="anio" onchange="cargarCargos()">
+                        <option value="anio">Año</option>
+                    </select>
+                    <select name="cargo" id="cargo" onchange=" cargarDistritos()">
+                        <option value="cargo">Cargo</option>
+                    </select>
+                    <select name="distric" id="distrito" onchange=" cargarSecciones()">
+                        <option value="distrito">Distrito</option>
+                    </select>
+                    <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
+                    <select name="seccion" id="seccion" placeholder="Sección">
+                        <option value="seccion">Sección</option>
+                    </select>
+                </form>
+            </div>
+            <button id="btnFiltrar" class="filtro" onclick="filtrarResultados()">
+                <img src="img/icons/lupa.svg" alt="iconosvg" class="iconlupa">
+                FILTRO
+            </button>>
+            <li><a class="active" href="informes.html">INFORMES</a></li>
+            <div class="inic_boton">
+                <li><a class="BotonInicio" href="index.html">INICIO</a> </li>
+            </div>
+        </ul>
+    </header>
+    <!-- Contenido principal de la página -->
+    <main>
+        <div class="contbotton">
+            <button class="boton" id="boton_1"><img src="/img/icons/icons8-pulgar-arriba-24.png" alt="ok" />se agrega
+                con exito el resultado del informe</button>
+            <br>
+            <button class="boton" id="boton_2"><img src="/img/icons/icons8-error-30.png" alt="error" />se produjo un
+                error al intentar consultar el informe</button>
+            <br>
+            <button class="boton" id="boton_3"><img src="/img/icons/icons8-signo-de-exclamación-26.png" alt="alert" />no
+                tiene Resultados en el informe</button>
+        </div>
+        <section id="sec-titulo">
+            <h2 id="titulo" style="display: none;"> Elecciones 2021 | Generales </h2>
+            <h5 id="subtitulo" style="display: none;"> 2021 > Generales> Provisorio> Senadores nacionales</h5>
+        </section>
+        <div id="mensajeError" class="mensaje-error" style="background-color: red;" style="display: none;"></div>
+        <div id="mensajeAdvertencia" class="mensaje-advertencia" style="background-color: yellow;"></div>
+        <section id="Cont_botonera">
+            <div class="boton_inf">
+                <button class="boton_informe" onclick="agregarInforme()">
+                    + Agregar a Informe
+                </button>
+                <div class="div_botones">
+                    <div class="boton1">
+                        <a href="#">
+                            <button class="mesas_computadas">
+                                <img src="img/icons/img.svg" alt="iconosvg" class="icon_botones"> Mesas Computadas
+                                <span id="mesas_computadas_valor"> 2,586</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="boton2">
+                        <a href="#">
+                            <button class="Electores">
+                                <img src="img/icons/manitos.svg" alt="iconosvg" class="icon_botones">Electores
+                                <span id="electores_valor"> 876,580</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="boton3">
+                        <a href="#">
+                            <button class="p_escriturado">
+                                <img src="img/icons/personitas.svg" alt="iconosvg" class="icon_botones">Participacion
+                                Sobre
+                                Escriturado
+                                <span id="participacion_escriturado_valor"> 65,2%</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+        </section>
+        <section class="estadistica">
+            <div class="barra_estadistica">
+                <h3 id="AgrupacionPolitica">Agrupaciones Politicas</h3>
+                <div class="scroll">
+                    <div class="titulo_barra">
+                        <p id="nombreAgrupacion1">ECO+ VAMOS CORRIENTES</p>
+                        <div class="porcent">
+                            <p id="porcentAgrupacion1">56.98%</p>
+                            <p id="votosAgrupacion1">320.876 votos</p>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar1" role="progressbar" style="width: 56%;" aria aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"> </div>
+                    </div>
+                    <div class="titulo_barra">
+                        <p id="nombreAgrupacion2">FRENTE DE TODOS</p>
+                        <div class="porcent">
+                            <p id="porcentAgrupacion2">36.54%</p>
+                            <p id="votosAgrupacion2">196.772 votos</p>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar2" role="progressbar" style="width: 36%;" aria aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"> </div>
+                    </div>
+                    <div class="titulo_barra">
+                        <p id="nombreAgrupacion3">VAMOS CON VOS</p>
+                        <div class="porcent">
+                            <p id="porcentAgrupacion3">2.51%</p>
+                            <p id="votosAgrupacion3">13.632 votos</p>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar3" role="progressbar" style="width: 2.51%;" aria aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"> </div>
+                    </div>
+                    <div class="titulo_barra">
+                        <p id="nombreAgrupacion4">COMPROMISO FEDERAL</p>
+                        <div class="porcent">
+                            <p id="porcentAgrupacion4">1.98%</p>
+                            <p id="votosAgrupacion4">10.750 votos</p>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar4" role="progressbar" style="width: 1.8%;" aria aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"> </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="mapacorrientes">
+                <svg height="210px" width="800px">
+                    <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
+                        fill-rule="evenodd"
+                        d="M106 135L108 138L109 135L116 136L122 132L123 133L131 130L139 134L143 141L148 145L147 139L151 137L153 133L152 131L154 131L159 126L160 121L168 117L169 114L174 109L176 103L180 102L183 95L186 93L189 87L192 86L193 83L197 85L195 80L197 80L198 78L194 73L194 69L188 60L189 58L186 57L180 64L177 60L174 60L173 62L170 60L164 61L145 55L130 56L127 58L124 61L126 69L125 72L123 77L120 77L119 80L120 91L117 100L116 102L114 102L112 106L110 106L108 111L108 117L106 121L109 127L106 133L107 135z">
+                    </path>
+                </svg>
+            </div>
+            <div class="content">
+                <div class="chart-wrap horizontal">
+                    <div class="title">Resumen de votos</div>
+
+                    <div class="grid">
+                        <div class="bar" id="bar1" style="--bar-value:0%;" data-name="" title="Partido1 85%"></div>
+                        <div class="bar" id="bar2" style="--bar-value:0%;" data-name="" title="Partido2 23%"></div>
+                        <div class="bar" id="bar3" style="--bar-value:0%;" data-name="" title="Partido3 7%"></div>
+                        <div class="bar" id="bar4" style="--bar-value:0%;" data-name="" title="Partido4 38%"></div>
+                        <div class="bar" id="bar5" style="--bar-value:0%;" data-name="" title="Partido5 35%"></div>
+                        <div class="bar" id="bar6" style="--bar-value:0%;" data-name="" title="Partido6 30%"></div>
+                        <div class="bar" id="bar7" style="--bar-value:0%;" data-name="" title="Partido7 5%"></div>
+                        <div class="bar" id="bar8" style="--bar-value:0%;" data-name="" title="Otro 20%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!--Pie de página-->
+    <footer>
+        <div class="piedepag">
+            <img src="img/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="logoministerio" class="imgfooter">
+            <img src="img/Logo_DINE_negativo.png" alt="logodine" class="imgfooter">
+            <img src="img/logos_001-10.4430c8d5.png" alt="obpolelec" class="imgfooter">
+            <p>“Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
+                porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
+                45
+                Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
+                residentes
+                en el exterior ni privados de la libertad. Al usar este sitio usted acepta los <a href="#">Términos y
+                    Condiciones</a>.”</p>
+        </div>
+    </footer>
+</body>
+
+</html>

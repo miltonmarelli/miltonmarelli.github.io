@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Publicación de Resultados Electorales</title>
+    <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/informes.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <script src="pages/informes.js" defer></script>
+    <script src="pages/common.js" defer></script> 
+</head>
+
+<body onload="cargarHtml()">
+    <header>
+        <a href="index.html" style="text-decoration: none;">
+            <div class="header-page">
+                <img src="img/dine.png" alt="logo" class="logo">
+                <h2 class=" titulosup">Dirección Nacional</h2>
+                <h2 class=" titulosup">Electoral</h2>
+            </div>
+        </a>
+        <ul class="barra1">
+            <p class="cons">consultar:</p>
+            <li><a class="active1" id="paso" href="paso.html">PASO</a></li>
+            <li><a class="active2" id="generales" href="generales.html">GENERALES</a></li>
+            <li><a class="active3" id="inicio" href="index.html">INICIO</a></li>
+        </ul>
+    </header>
+    <main>
+        <section id="sec-titulo">
+            <div class="contbotton" style="display: none;">
+                <button class="boton" id="boton_1"><img src = "/img/icons/icons8-pulgar-arriba-24.png"  alt = " Ingreso " />se agrega con exito el resultado del informe</button>
+                <br>
+                <button class="boton" id="boton_2"><img src = "/img/icons/icons8-error-30.png"  alt = " Alerta " />error. se produjo un error al intentar consultar el informe</button>
+                <br>
+                <button class="boton" id="boton_3"><img src = "/img/icons/icons8-signo-de-exclamación-26.png"  alt = " Error " />no tiene Resultados en el informe</button>
+            </div>
+            <!--Seccion para agregar una palicula favorita por codigo-->
+            <h2>Reporte de Elecciones</h2>
+            <div class="tabla">
+                <p>PROVINCIA</p>
+                <p>ELECCION</p>
+                <p>DATOS GENERALES</p>
+                <p>DATOS POR AGRUPACIONES</p>
+            </div>
+        </section>
+        <section class="contenido" id="sec-contenido" id="cuadroInformes">
+            <div class="svg">
+                <svg height="210" width="800">
+                    <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
+                        fill-rule="evenodd"
+                        d="M171 55L163 53L150 45L147 50L143 49L133 60L114 60L114 151L116 151L120 155L122 156L126 153L128 149L124 145L126 143L126 138L128 138L129 133L126 129L126 122L134 126L139 126L169 119L179 114L189 97L190 89L189 87L186 87L182 82L185 75L181 69L171 63L170 64L170 58z">
+                    </path>
+                </svg>
+            </div>
+            <div id="informeDatos" class="elecc"></div>
+            <div class="elecc" i>
+                <p class="pala-grande" id="elec-anio" ><b>Elecciones 2020|generales</b></p>
+                <p class="pala" id="Anioelec"> <a> 2020 ></a></p>
+                <p class="pala" ><a> Generales ></a></p>
+                <p class="pala"> <a> Provisorio ></a></p>
+                <p class="pala" id="cargoelec"> <a> Senadores </a></p>
+                <p class="pala"><a> Nacionales ></a></p>
+                <p class="pala" style="display: none;"><a>Diputados nacionales > </a></p>
+            </div>
+            <div class="botones">
+                <button class="mesas_computadas" id="mesasescrit">
+                    <img src="img/icons/img.svg" alt="iconosvg" class="icon_botones" > Mesas Computadas
+                    2,586
+                </button>
+                <button class="electores" id="electoress">
+                    <img id="electores" src="img/icons/manitos.svg" alt="iconosvg" class="icon_botones">Electores
+                    876,580
+                </button>
+                <button class="p_escriturado" id="escriturad">
+                    <img src="img/icons/personitas.svg" alt="iconosvg" class="icon_botones">Participacion Sobre el escriturado 65.2%</button>
+            </div>
+            <div class="descrip">
+                <div class="candidatos" id="datosdatos">
+                    <p> <b>JUNTOS</b></p>
+                    <p><b>FRENTE VAMOS CON TODO</b></p>
+                    <p><b>AVANZA LIBERTAD</b></p>
+                </div>
+                <div class="porcentajes" id="porcentajeagrup">
+                    <p>38%</p>
+                    <p >3.284.560 votos</p>
+                    <p>20%</p>
+                    <p>1.240.580 votos</p>
+                    <p>27%</p>
+                    <p>2.167.245 votos</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!--Pie de página-->
+    <footer>
+        <div class="piedepag">
+            <img src="img/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="logoministerio" class="imgfooter">
+            <img src="img/Logo_DINE_negativo.png" alt="logodine" class="imgfooter">
+            <img src="img/logos_001-10.4430c8d5.png" alt="obpolelec" class="imgfooter">
+            <p>“Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
+                porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
+                45
+                Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
+                residentes
+                en el exterior ni privados de la libertad. Al usar este sitio usted acepta los <a href="#">Términos y
+                    Condiciones</a>.”</p>
+
+        </div>
+    </footer>
+</body>
+
+</html>

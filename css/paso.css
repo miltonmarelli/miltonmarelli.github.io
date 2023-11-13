@@ -1,0 +1,329 @@
+body{
+ background-color: rgb(237, 251, 255); 
+}
+#Cont_botonera{
+  display: flex;
+
+}
+.icon_botones{
+  width: 70px;
+}
+.boton_inf{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.boton_informe{
+ margin-right: 500px;
+ margin-left: 20px;
+ height: 25px;
+ width: 170px;
+ border: none;
+ border-radius: 5px;
+ background-color:#dbd8d8; /*color igual al de la imagen, gris claro de css mas oscuro*/
+ color: white;
+ flex : wrap;
+}
+
+.div_botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.boton1 , .boton2 , .boton3 {
+  display: flex;
+  height: 90px; 
+  align-items: center;
+}
+.mesas_computadas , .Electores , .p_escriturado {
+  display: flex;
+  align-items: center;
+  height: 80px ;
+  border-radius: 15px;
+  width: 220px;
+}
+.p_escriturado {
+  background-color: rgb(112, 76, 159);
+  color: white;
+}
+.mesas_computadas{
+  background-color:  rgba(79, 173, 255, 0.932);
+  color: white;
+}
+.Electores{
+  background-color:rgb(221, 90, 134);
+  color: white;
+}
+.barra1 {
+  margin-top: 0px;
+  list-style: none;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1px;
+  background-color: #333;
+}
+#cargo {
+  max-width: 200px; /* ajuste */
+}
+#distrito {
+  max-width: 200px; /* ajuste */
+}
+.seleccionables{
+ color: white;
+ margin-right: 15px;
+}
+select{
+  background-color: #333;
+  color: white;
+  border: none;
+}
+.filtro {
+  padding: 0 2px;
+  display: flex;
+  background-color:white;
+  border: solid 1px white;
+  border-radius: 15px;
+  align-content: center;
+  width: 100px;
+  height: 20px;
+}
+.filtro1{
+  margin: 0px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  width: 60px;
+}
+.inic_boton{
+  display: flex;
+  width: 50px;
+  height: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 10%;
+  padding: 10px;
+  margin: 10px
+   
+}
+.BotonInicio{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 4px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: solid 1px #dbd8d8;
+  background-color: #dbd8d8;
+  border-radius: 5px;
+  color:#333;
+}
+.barra_estadistica{
+  border-radius: 10px;
+  box-shadow: 1px 2px 2px 1px ;
+  margin : 80px 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  width: 500px;
+  height: auto;
+  gap: 5px;
+}
+.scroll{
+  overflow-y: scroll;
+}
+.barra_estadistica > h3 {
+  text-align: start;
+  font-size: larger;
+
+}
+.progress{
+  margin: 5px;
+  width: 450px;
+  height: 5px;
+}
+.titulo_barra{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.porcent{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  gap: 1px;
+}
+.progress-bar1{
+  background-color: rgb(51, 139, 51);
+ 
+}
+.progress-bar2{
+  background-color: rgb(111, 199, 254);
+  
+}
+.progress-bar3{
+  background-color: rgb(37, 255, 37);
+  
+}
+.progress-bar4{
+  background-color: rgb(86, 97, 255);
+  
+}
+.estadistica { 
+  display: flex ;
+  align-content: center;
+}
+.mapacorrientes{
+  border-radius: 10px;
+  box-shadow: 1px 2px 2px 1px ;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin : 80px 10px;
+  width: 400px;
+  height: 600px;
+  padding: 10px;
+}
+.chart-wrap {
+  background-color: white;
+--chart-width: 420px;
+--grid-color: #aaa;
+--bar-color:rgb(135, 134, 134); 
+--bar-thickness: 40px;
+--bar-rounded: 3px;
+--bar-spacing: 10px;
+
+font-family: sans-serif;
+width: var(--chart-width);
+}
+
+.chart-wrap .title {
+font-weight: bold;
+padding: 1.8em 0;
+text-align: center;
+white-space: nowrap;
+}
+
+.chart-wrap.horizontal .grid {
+transform: rotate(-90deg);
+}
+
+.chart-wrap.horizontal .bar::after {
+transform: rotate(45deg);
+padding-top: 0px;
+display: block;
+}
+
+.chart-wrap .grid {
+margin-left: 50px;
+position: relative;
+padding: 5px 0 5px 0;
+height: 100%;
+width: 100%;
+border-left: 2px solid var(--grid-color);
+}
+
+.chart-wrap .grid::before {
+font-size: 0.8em;
+font-weight: bold;
+content: "0%";
+position: absolute;
+left: -0.5em;
+top: -1.5em;
+}
+.chart-wrap .grid::after {
+font-size: 0.8em;
+font-weight: bold;
+content: "100%";
+position: absolute;
+right: -1.5em;
+top: -1.5em;
+}
+
+.chart-wrap.horizontal .grid::before,
+.chart-wrap.horizontal .grid::after {
+transform: rotate(90deg);
+}
+
+.chart-wrap .bar {
+width: var(--bar-value);
+height: var(--bar-thickness);
+margin: var(--bar-spacing) 0;
+background-color: var(--bar-color);
+border-radius: 0 var(--bar-rounded) var(--bar-rounded) 0;
+}
+
+.chart-wrap .bar:hover {
+opacity: 0.7;
+}
+
+.chart-wrap .bar::after {
+content: attr(data-name);
+margin-left: 100%;
+padding: 10px;
+display: inline-block;
+white-space: nowrap;
+}
+.content{
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px 1px ;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    margin : 80px 10px;
+    width: 500px;
+    height: 600px;
+    padding: 10px;
+    overflow-x: hidden;
+}
+.contbotton{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+}
+.boton{
+  align-self: center;
+  margin: 1px;
+  width: 30%;
+  height: 50px;
+  border-radius: 10px;
+  color:#FFffFF;
+  font-size: 200;
+  text-align: center;
+  border: none;
+}
+#boton_1{
+  display: flex;
+  background-color:  #28a745;
+  padding-top: 15px;
+  justify-content: center;
+  align-content: center; 
+  /* text-align: center;   */
+}
+#boton_2{
+  display: flex;
+  background-color: #dc3545;
+  padding-top: 15px;
+  justify-content: center;
+  align-content: center;
+  text-align: center; 
+}
+#boton_3{
+  display: flex;
+  background-color: #ffc107;
+  padding-top: 15px;
+  justify-content: center;
+  align-content: center;
+  text-align: center; 
+}

@@ -1,0 +1,114 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  rgb(235, 245, 251);;
+}
+/* head */
+.header-page {
+    background-color: #18a0fb;
+    Padding: 0.5em;
+    flex: 90%;
+    height: 40px;
+    color: white;
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    margin: 0 auto;
+}
+.logo{
+    margin:0px;
+    width: 30px;
+}
+.titulosup {
+    display: block;
+    font-size: x-small;
+    margin: 0px;
+}
+.barra1 {
+    margin-top: 0px;
+    /*margin-left: 13px ;
+    margin-right: 13px ; se comenta este requisito pedido porque sino no queda como la imagen del ejemplo 
+    padding-top: 20px;*/
+    flex: 100%;
+    list-style: none;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1px;
+    background-color: #333;
+}
+.barra1 > li {
+    display: flex;
+    margin: 40px;
+    color: white;
+    border: solid white 1px;
+    border-radius: 10px;
+    align-items: center;
+    justify-items: flex-end;
+}
+li > a {
+    font-size: x-small;
+    text-decoration: none;
+    margin : 3px;
+    font-size: x-small ;
+    color: white;
+}
+/*footer*/
+.piedepag{
+    background-color: #333;
+    color: #9e9e9e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: medium;
+}
+.imgfooter{
+    align-self: flex-start;
+    height: 40px;
+    margin: 15px;
+}
+/* 
+.colors {
+        grafica-rojo: rgb(255, 0, 0);
+        gráfica-rojo-claro: rgba(255, 0, 0, 0.3);
+        gráfica-verde: rgb(0, 255, 0);
+        gráfica-verde-claro: rgba(0, 255, 0, 0.3);
+    
+        gráfica-azul: rgb(0, 0, 255);
+        grafica-azul-claro: rgba(0, 0, 255, 0.3);
+    
+        gráfica-amarillo: rgb(255, 255, 0);
+        gráfica-amarillo-claro: rgba(255, 255, 0, 0.3);
+    
+        gráfica-naranja: rgb(255, 165, 0);
+        grafica-naranja-claro: rgba(255, 165, 0, 0.3);
+    
+        gráfica-violeta: rgb(148, 0, 211);
+        grafica-violeta-claro: rgba(148, 0, 211, 0.3);
+    
+        gráfico-cian: rgb(0, 255, 255);
+        grafica-cian-claro: rgba(0, 255, 255, 0.3);
+    
+        gráfica-magenta: rgb(255, 0, 255);
+        gráfica-magenta-claro: rgba(255, 0, 255, 0.3);
+    
+        gráfica-rosa: rgb(255, 182, 193);
+        grafica-rosa-claro: rgba(255, 182, 193, 0.3);
+    
+        grafica-amarillo-verde: rgb(154, 205, 50);
+        grafica-amarillo-verde-claro: rgba(154, 205, 50, 0.3);
+    
+        gráfica-azul-marino: rgb(0, 0, 128);
+        grafica-azul-marino-claro: rgba(0, 0, 128, 0.3);
+    
+        grafica-cafe: rgb(139, 69, 19);
+        grafica-cafe-claro: rgba(139, 69, 19, 0.3);
+    
+        gráfica-gris-oscuro: rgb(64, 64, 64);
+        grafica-gris-oscuro-claro: rgba(64, 64, 64, 0.3);
+    
+        gráfica-blanco: rgb(255, 255, 255);
+        grafica-blanco-claro: rgba(255, 255, 255, 0.3);
+    
+    
+    } */

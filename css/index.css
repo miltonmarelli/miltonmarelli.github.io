@@ -1,0 +1,90 @@
+body{
+    background-color: white; /*reajusto color fondo para que quede como en imagen ejemplo*/
+}
+#sec-titulo{
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-between;
+}
+.title {
+    margin: 0 10%;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+img{
+    display: block;
+    width: 400px;
+    margin: 0 10%;
+}
+#sec-contenido{
+    margin: 10px;
+    background-color: rgb(240, 251, 255);
+    padding: 10px;
+}
+#sec-contenido > h3{
+    font-size: x-large;
+    margin: 0px;
+}
+.bottons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.boton1{
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    align-content: center;
+}
+.icon{
+    display: inline-flex;
+    align-items: center;
+    margin: 0px;
+    width: 80px;
+    color: white;
+}
+.pink{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    font-size: xx-large;
+    background-color: rgb(221, 90, 134);
+    color: white;
+    width: 630px;
+    height: 80px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 10px; 
+    border: none;
+}
+.blue{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    font-size: xx-large;
+    background-color: rgba(79, 173, 255, 0.932);
+    color: white;
+    width: 630px;
+    height: 80px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 10px; 
+    border: none;
+}
+/*.piedepag{
+    background-color: #333;
+    color: #9e9e9e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: medium;
+}
+.imgfooter{
+    align-self: flex-start;
+    height: 40px;
+    margin: 15px;
+}
