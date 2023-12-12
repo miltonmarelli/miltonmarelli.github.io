@@ -23,7 +23,7 @@ function cargarImagen() {
   imgElement.alt = 'Seleccione los valores y haga click en Filtrar';
   imgElement.id = 'imagenInicio';
   imgElement.style.width = '100%';
-  imgElement.style.height = '80hv'; 
+  imgElement.style.height = '615px'; 
 
   const mensaje = document.createElement('div');
   mensaje.textContent = 'Debe seleccionar todos los valores a filtrar y hacer clic en el botón FILTRAR';
