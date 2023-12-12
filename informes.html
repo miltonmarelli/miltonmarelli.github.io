@@ -14,7 +14,7 @@
     <script src="pages/common.js" defer></script> 
 </head>
 
-<body onload="cargarHtml()">
+<body onload="obtenerResultados()">
     <header>
         <a href="index.html" style="text-decoration: none;">
             <div class="header-page">
@@ -30,14 +30,14 @@
             <li><a class="active3" id="inicio" href="index.html">INICIO</a></li>
         </ul>
     </header>
-    <main>
+    <main id="main">
         <section id="sec-titulo">
             <div class="contbotton" style="display: none;">
-                <button class="boton" id="boton_1"><img src = "/img/icons/icons8-pulgar-arriba-24.png"  alt = " Ingreso " />se agrega con exito el resultado del informe</button>
+                <button class="boton" id="boton_1" style="display: none;" ><img src = "/img/icons/icons8-pulgar-arriba-24.png"  alt = " Ingreso " />se agrega con exito el resultado del informe</button>
                 <br>
-                <button class="boton" id="boton_2"><img src = "/img/icons/icons8-error-30.png"  alt = " Alerta " />error. se produjo un error al intentar consultar el informe</button>
+                <button class="boton" id="boton_2" style="display: none;" ><img src = "/img/icons/icons8-error-30.png"  alt = " Alerta " />error. se produjo un error al intentar consultar el informe</button>
                 <br>
-                <button class="boton" id="boton_3"><img src = "/img/icons/icons8-signo-de-exclamación-26.png"  alt = " Error " />no tiene Resultados en el informe</button>
+                <button class="boton" id="boton_3" style="display: none;"><img src = "/img/icons/icons8-signo-de-exclamación-26.png"  alt = " Error " />no tiene Resultados en el informe</button>
             </div>
             <!--Seccion para agregar una palicula favorita por codigo-->
             <h2>Reporte de Elecciones</h2>
@@ -48,8 +48,8 @@
                 <p>DATOS POR AGRUPACIONES</p>
             </div>
         </section>
-        <section class="contenido" id="sec-contenido" id="cuadroInformes">
-            <div class="svg">
+        <section class="contenido" id="sec-contenido"  >
+            <div class="svg" id="mapas">
                 <svg height="210" width="800">
                     <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
@@ -59,8 +59,8 @@
                 </svg>
             </div>
             <div id="informeDatos" class="elecc"></div>
-            <div class="elecc" i>
-                <p class="pala-grande" id="elec-anio" ><b>Elecciones 2020|generales</b></p>
+            <div class="elecc" id='detalle'>
+                <p class="pala-grande" id="elec-anio" ><b>Elecciones 2020 | generales</b></p>
                 <p class="pala" id="Anioelec"> <a> 2020 ></a></p>
                 <p class="pala" ><a> Generales ></a></p>
                 <p class="pala"> <a> Provisorio ></a></p>
@@ -68,17 +68,19 @@
                 <p class="pala"><a> Nacionales ></a></p>
                 <p class="pala" style="display: none;"><a>Diputados nacionales > </a></p>
             </div>
-            <div class="botones">
-                <button class="mesas_computadas" id="mesasescrit">
-                    <img src="img/icons/img.svg" alt="iconosvg" class="icon_botones" > Mesas Computadas
-                    2,586
-                </button>
-                <button class="electores" id="electoress">
-                    <img id="electores" src="img/icons/manitos.svg" alt="iconosvg" class="icon_botones">Electores
-                    876,580
-                </button>
-                <button class="p_escriturado" id="escriturad">
-                    <img src="img/icons/personitas.svg" alt="iconosvg" class="icon_botones">Participacion Sobre el escriturado 65.2%</button>
+            <div id="contenedorBotones" class="contenedorBotones">
+                <div class="botones" id="botones">
+                    <button class="mesas_computadas" id="mesasescrit">
+                        <img src="img/icons/img.svg" alt="iconosvg" class="icon_botones" > Mesas Computadas
+                        2,586
+                    </button>
+                    <button class="electores" id="electoress">
+                        <img id="electores" src="img/icons/manitos.svg" alt="iconosvg" class="icon_botones">Electores
+                        876,580
+                    </button>
+                    <button class="p_escriturado" id="escriturad">
+                        <img src="img/icons/personitas.svg" alt="iconosvg" class="icon_botones">Participacion Sobre el escriturado 65.2%</button>
+                </div>
             </div>
             <div class="descrip">
                 <div class="candidatos" id="datosdatos">

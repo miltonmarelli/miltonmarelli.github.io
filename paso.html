@@ -8,12 +8,14 @@
     <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/paso.css" />
+    <link rel="stylesheet" href="css/paso.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="pages/paso.js" defer></script>
     <script src="pages/common.js" defer></script> 
 </head>
 
-<body onload="obtenerPeriodos(), ocultarbotones()">
+<body onload="obtenerPeriodos(), ocultarbotones(), cargarImagen()">
     <header>
         <!--Barra de logo portal-->
         <a href="index.html" style="text-decoration: none;">
@@ -52,6 +54,7 @@
             </div>
         </ul>
     </header>
+    <div id="imgPrincipal"></div>
     <!-- Contenido principal de la página -->
     <main>
         <div class="contbotton">
@@ -66,7 +69,7 @@
         </div>
         <section id="sec-titulo">
             <h2 id="titulo" style="display: none;"> Elecciones 2021 | Generales </h2>
-            <h5 id="subtitulo" style="display: none;"> 2021 > Generales> Provisorio> Senadores nacionales</h5>
+            <h5 id="subtitulo" style="display: none; color: rgb(92, 92, 255);"> 2021 > Generales> Provisorio> Senadores nacionales</h5>
         </section>
         <div id="mensajeError" class="mensaje-error" style="background-color: red;" style="display: none;"></div>
         <div id="mensajeAdvertencia" class="mensaje-advertencia" style="background-color: yellow;"></div>
@@ -155,8 +158,8 @@
                 </div>
             </div>
             </div>
-            <div class="mapacorrientes">
-                <svg height="210px" width="800px">
+            <div class="mapacorrientes" id="maps">
+                <svg height="210px" width="800px" style="display: none;">
                     <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
                         fill-rule="evenodd"

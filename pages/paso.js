@@ -11,6 +11,40 @@ const seccionSelect = document.getElementById('seccion');
 let selectedCargo;
 const valorPredeterminado = "";
 
+////////////////////////////////IMAGEN PRINCIPAL//////////////////////
+function cargarImagen() {
+  const rutaImagen = '/img/f-procesamiento-de-datos-power-bi.jpg';
+  const contenedorImagen = document.createElement('div');
+  contenedorImagen.id = 'contenedorImagen';
+  contenedorImagen.style.position = 'relative'; 
+
+  const imgElement = document.createElement('img');
+  imgElement.src = rutaImagen;
+  imgElement.alt = 'Seleccione los valores y haga click en Filtrar';
+  imgElement.id = 'imagenInicio';
+  imgElement.style.width = '100%';
+  imgElement.style.height = '80hv'; 
+
+  const mensaje = document.createElement('div');
+  mensaje.textContent = 'Debe seleccionar todos los valores a filtrar y hacer clic en el botón FILTRAR';
+  mensaje.style.position = 'absolute';
+  mensaje.style.top = '10px'; 
+  mensaje.style.left = '50%';
+  mensaje.style.transform = 'translateX(-50%)'; 
+  mensaje.style.backgroundColor = 'rgba(255, 255, 0, 0.7)'; 
+  mensaje.style.padding = '10px';
+  mensaje.style.borderRadius = '5px';
+
+  contenedorImagen.appendChild(imgElement);
+  contenedorImagen.appendChild(mensaje);
+
+  
+  const mainElement = document.querySelector('main');
+  mainElement.style.display = 'none';
+  const contenedorElement = document.getElementById('imgPrincipal');
+  contenedorElement.appendChild(contenedorImagen);
+}
+
 
 ///////////////////////ocultar botones////////////////////
 function ocultarbotones() {
@@ -24,12 +58,10 @@ function ocultarbotones() {
 ///////////////////////////combos////////////////////////////////////////////
 
 async function obtenerPeriodos() {
-  periodosSelect.innerHTML = '';
   try {
     const response = await fetch('https://resultados.mininterior.gob.ar/api/menu/periodos');
     if (response.ok) {
       const periodos = await response.json();
-      periodosSelect.innerHTML = ''; 
 
       console.log('Periodos:', periodos);
 
@@ -99,11 +131,9 @@ function cargarDistritos() {
   const selectedDistritoId = distritoSelect.value;
 
   const SeccionProvincial = document.getElementById('hdSeccionProvincial');
-  //const seleccionProvincial= selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].IDSeccionesProvinciales;
-  //SeccionProvincial.value = seleccionProvincial.IDSeccionesProvinciales;
-  SeccionProvincial.value = null;
-
-
+  const seleccionProvincial= selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].IDSeccionProvincial;
+  SeccionProvincial.value = seleccionProvincial;
+  console.log("SeccionProvincial : ", SeccionProvincial.value);
   const secciones = selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].Secciones;
   console.log('SECCIONES :',secciones)
    secciones.forEach((seccion) => {
@@ -118,7 +148,7 @@ function cargarDistritos() {
  async function filtrarResultados() {
     const anioEleccion = document.getElementById('anio').value;
     const tipoRecuento = 1; 
-    const tipoEleccion = 2; 
+    const tipoEleccion = 1; 
     const categoriaId = cargoSelect.value;
     const Categoriatxt = cargoSelect.options[cargoSelect.selectedIndex].innerText;
     const distritoId = distritoSelect.value;
@@ -142,17 +172,25 @@ function cargarDistritos() {
       console.log('URL FETCH',`${urlServicio}?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${valorPredeterminado}&mesaId=${valorPredeterminado}`)
       const response = await fetch(`${urlServicio}?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${valorPredeterminado}&mesaId=${valorPredeterminado}`);
       if (response.ok) {
+        /////////pantalla inicio//////////////////////
+        const mainElement = document.querySelector('main');
+        mainElement.style.display = 'block';
+  
+        const contenedorImagenElement = document.getElementById('contenedorImagen');
+        contenedorImagenElement.style.display = 'none';
+        ///////////////////////////////////////////////////
+
         resultados= await response.json();
         console.log('Resultados filtrados:', resultados);
         const titulo = document.getElementById('titulo');
         titulo.style.display= 'block';
         const periodo = document.getElementById('anio').value;
-        titulo.textContent = `Elecciones ${periodo} | Generales`;
+        titulo.textContent = `Elecciones ${periodo} | PASO `;
 
         document.getElementById('mensajeAdvertencia').style.display = 'none';
         const subtitulo = document.getElementById('subtitulo');
         subtitulo.style.display = 'block';
-        const tipoEleccion = 'Generales';
+        const tipoEleccion = 'PASO';
         const cargo = Categoriatxt ;
         const distrito = distritotxt;
         const seccion = seccionSelecttxt;
@@ -164,6 +202,10 @@ function cargarDistritos() {
         electores.innerHTML = `${resultados.estadoRecuento.cantidadElectores}`;
         const participacion = document.getElementById('participacion_escriturado_valor');
         participacion.innerHTML = `${resultados.estadoRecuento.participacionPorcentaje}`;
+
+        var contenedorMapa = document.getElementById(`maps`);
+        var svgMapa = provincias[distritoId];
+        contenedorMapa.innerHTML = svgMapa;
 
       } else {
         document.getElementById('mensajeAdvertencia').style.display = 'none';
@@ -187,7 +229,7 @@ async function agregarInforme() {
   const nuevoInforme = {
     anioEleccion : document.getElementById('anio').value,
     tipoRecuento : 1, 
-    tipoEleccion : 2, 
+    tipoEleccion : 1, 
     categoriaId : cargoSelect.value,
     Categoriatxt : cargoSelect.options[cargoSelect.selectedIndex].innerText,
     distritoId : distritoSelect.value,
@@ -214,61 +256,57 @@ async function agregarInforme() {
   }
 }
 // ////////////////////GRAFICAS////////////////////////////////
-// import { coloresAgrupaciones } from './common.js'; NO FUNCIONA!
-const coloresAgrupaciones = {
-     0: { colorPleno: 'rgb(255, 0, 0)', colorSuave: 'rgba(255, 0, 0, 0.3)' }, // gráfica-rojo
-     1: { colorPleno: 'rgb(0, 255, 0)', colorSuave: 'rgba(0, 255, 0, 0.3)' }, // gráfica-verde
-     2: { colorPleno: 'rgb(0, 0, 255)', colorSuave: 'rgba(0, 0, 255, 0.3)' }, // gráfica-azul
-     3: { colorPleno: 'rgb(255, 255, 0)', colorSuave: 'rgba(255, 255, 0, 0.3)' }, // gráfica-amarillo
-     4: { colorPleno: 'rgb(255, 165, 0)', colorSuave: 'rgba(255, 165, 0, 0.3)' }, // gráfica-naranja
-     5: { colorPleno: 'rgb(148, 0, 211)', colorSuave: 'rgba(148, 0, 211, 0.3)' }, // gráfica-violeta
-     6: { colorPleno: 'rgb(0, 255, 255)', colorSuave: 'rgba(0, 255, 255, 0.3)' }, // gráfico-cian
-     7: { colorPleno: 'rgb(255, 0, 255)', colorSuave: 'rgba(255, 0, 255, 0.3)' }, // gráfica-magenta
-     8: { colorPleno: 'rgb(255, 182, 193)', colorSuave: 'rgba(255, 182, 193, 0.3)' }, // gráfica-rosa
-     9: { colorPleno: 'rgb(154, 205, 50)', colorSuave: 'rgba(154, 205, 50, 0.3)' }, // grafica-amarillo-verde
-     10: { colorPleno: 'rgb(0, 0, 128)', colorSuave: 'rgba(0, 0, 128, 0.3)' }, // gráfica-azul-marino
-     11: { colorPleno: 'rgb(139, 69, 19)', colorSuave: 'rgba(139, 69, 19, 0.3)' }, // grafica-cafe
-     12: { colorPleno: 'rgb(64, 64, 64)', colorSuave: 'rgba(64, 64, 64, 0.3)' } // gráfica-gris-oscuro
-   }
 
    function grafico(resultados) {
     const valoresTotalizadosPositivos = resultados.valoresTotalizadosPositivos;
-    console.log('JSON para Grafica:', valoresTotalizadosPositivos);
-  
-    const contenedorScroll = document.querySelector('.scroll');
-    contenedorScroll.innerHTML = ''; 
-    for (let i = 0; i < valoresTotalizadosPositivos.length; i++) {
-      const nombreAgrupacion = valoresTotalizadosPositivos[i].nombreAgrupacion;
-      console.log('nombredeagrup', nombreAgrupacion)
-      const porcentajeAgrupacion = valoresTotalizadosPositivos[i].votosPorcentaje;
-      console.log('% ', porcentajeAgrupacion)
-      const votosAgrupacion = valoresTotalizadosPositivos[i].votos;
-      console.log('votosagrup',votosAgrupacion)  
-      const colorPleno = coloresAgrupaciones[i].colorPleno;
-      const colorSuave = coloresAgrupaciones[i].colorSuave; 
+    console.log('JSON para Gráfica:', valoresTotalizadosPositivos);
 
-      const titulo_Barra = document.createElement('div');
-      titulo_Barra.className = `titulo_barra${i + 1}`;
-      titulo_Barra.innerHTML = `
-        <p id="nombreAgrupacion${i + 1}">${nombreAgrupacion}</p>
-        <div class="porcent${i + 1}">
-          <p id="porcentAgrupacion${i + 1}">${porcentajeAgrupacion}%</p>
-          <p id="votosAgrupacion${i + 1}">${votosAgrupacion} votos</p>
-        </div>`;
-  
-      const progressBar = document.createElement('div');
-      progressBar.className = `progress-bar${i + 1}`;
-      progressBar.setAttribute('role', 'progressbar');
-      progressBar.style.backgroundColor = colorPleno;
-      progressBar.style.color = colorSuave;
-      progressBar.style.width = `${porcentajeAgrupacion}%`;
-  
-      const progressDiv = document.createElement('div');
-      progressDiv.className = 'progress';
-      progressDiv.appendChild(progressBar);
-      titulo_Barra.appendChild(progressDiv);
-      contenedorScroll.appendChild(titulo_Barra);
+    const contenedorScroll = document.querySelector('.scroll');
+    contenedorScroll.innerHTML = '';
+   
+    for (let i = 0; i < valoresTotalizadosPositivos.length; i++) {
+        const nombreAgrupacion = valoresTotalizadosPositivos[i].nombreAgrupacion;
+        const listaPartidos = valoresTotalizadosPositivos[i].listas; 
+        const votosAgrupacion = valoresTotalizadosPositivos[i].votos;
+        const colorPleno = coloresAgrupaciones[i].colorPleno;
+        const colorSuave = coloresAgrupaciones[i].colorSuave;
+
+        const titulo = document.createElement('h3');
+        titulo.id = 'AgrupacionPolitica';
+        titulo.innerHTML = nombreAgrupacion;
+        contenedorScroll.appendChild(titulo);
+
+        for (let j = 0; j < listaPartidos.length; j++) {
+          const nombrePartido = listaPartidos[j].nombre;
+          const votosPartido = listaPartidos[j].votos;
+          const porcentajeVotos = (votosPartido * 100) / votosAgrupacion;
+            
+            const titulo_Barra = document.createElement('div');
+            titulo_Barra.className = `titulo_barra`;
+            titulo_Barra.innerHTML = `
+              <p id="nombreAgrupacion${i + 1}">${nombrePartido}</p>
+              <div class="porcent">
+                <p id="porcentAgrupacion${i + 1}">${porcentajeVotos.toFixed(2)}%</p>
+                <p id="votosAgrupacion${i + 1}">${votosPartido} votos</p>
+              </div>
+              `;
+        
+            const progressBar = document.createElement('div');
+            progressBar.className = `progress-bar${i + 1}`;
+            progressBar.setAttribute('role', 'progressbar');
+            progressBar.style.backgroundColor = colorPleno;
+            progressBar.style.color = colorSuave;
+            progressBar.style.width = `${porcentajeVotos}%`;
+        
+            const progressDiv = document.createElement('div');
+            progressDiv.className = 'progress'; 
+            progressDiv.appendChild(progressBar);
+            titulo_Barra.appendChild(progressDiv);
+            contenedorScroll.appendChild(titulo_Barra);
+          ;
+        }
     }
+
     for (let i = 0; i < Math.min(valoresTotalizadosPositivos.length, 7); i++) {
       const nombreAgrupacion = resultados.valoresTotalizadosPositivos[i].nombreAgrupacion;
       const porcentajeAgrupacion = resultados.valoresTotalizadosPositivos[i].votosPorcentaje;

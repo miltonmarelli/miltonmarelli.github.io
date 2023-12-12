@@ -15,7 +15,7 @@
     <script src="pages/common.js" defer></script> 
 </head>
 
-<body onload="obtenerPeriodos(), ocultarbotones()" >
+<body onload="obtenerPeriodos(), ocultarbotones(), cargarImagen();" >
     <header>
         <!--Barra de logo portal-->
         <a href="index.html" style="text-decoration: none;">
@@ -55,6 +55,7 @@
             </div>
         </ul>
     </header>
+    <div id="imgPrincipal"></div>
     <!-- Contenido principal de la página -->
     <main>
         <div class="contbotton">
@@ -155,8 +156,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mapacorrientes">
-                <svg height="210px" width="800px">
+            <div class="mapacorrientes" id="maps">
+                <svg height="210px" width="800px" style="display: none;">
                     <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
                         fill-rule="evenodd"

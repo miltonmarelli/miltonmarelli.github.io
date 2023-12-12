@@ -10,7 +10,39 @@ const SeccionProvincial = document.getElementById('hdSeccionProvincial');
 const seccionSelect = document.getElementById('seccion');
 let selectedCargo;
 const valorPredeterminado = "";
+////////////////////////////////IMAGEN PRINCIPAL//////////////////////
+function cargarImagen() {
+  const rutaImagen = '/img/f-procesamiento-de-datos-power-bi.jpg';
+  const contenedorImagen = document.createElement('div');
+  contenedorImagen.id = 'contenedorImagen';
+  contenedorImagen.style.position = 'relative'; 
 
+  const imgElement = document.createElement('img');
+  imgElement.src = rutaImagen;
+  imgElement.alt = 'Seleccione los valores y haga click en Filtrar';
+  imgElement.id = 'imagenInicio';
+  imgElement.style.width = '100%';
+  imgElement.style.height = '80hv'; 
+
+  const mensaje = document.createElement('div');
+  mensaje.textContent = 'Debe seleccionar todos los valores a filtrar y hacer clic en el botón FILTRAR';
+  mensaje.style.position = 'absolute';
+  mensaje.style.top = '10px'; 
+  mensaje.style.left = '50%';
+  mensaje.style.transform = 'translateX(-50%)'; 
+  mensaje.style.backgroundColor = 'rgba(255, 255, 0, 0.7)'; 
+  mensaje.style.padding = '10px';
+  mensaje.style.borderRadius = '5px';
+
+  contenedorImagen.appendChild(imgElement);
+  contenedorImagen.appendChild(mensaje);
+
+  
+  const mainElement = document.querySelector('main');
+  mainElement.style.display = 'none';
+  const contenedorElement = document.getElementById('imgPrincipal');
+  contenedorElement.appendChild(contenedorImagen);
+}
 
 ///////////////////////ocultar botones////////////////////
 function ocultarbotones() {
@@ -24,12 +56,11 @@ function ocultarbotones() {
 ///////////////////////////combos////////////////////////////////////////////
 
 async function obtenerPeriodos() {
-  periodosSelect.innerHTML = '';
   try {
     const response = await fetch('https://resultados.mininterior.gob.ar/api/menu/periodos');
     if (response.ok) {
       const periodos = await response.json();
-      periodosSelect.innerHTML = ''; 
+      //periodosSelect.innerHTML = ''; 
 
       console.log('Periodos:', periodos);
 
@@ -97,12 +128,11 @@ function cargarDistritos() {
 
   const selectedCargoId = cargoSelect.value;
   const selectedDistritoId = distritoSelect.value;
-
+  
   const SeccionProvincial = document.getElementById('hdSeccionProvincial');
-  //const seleccionProvincial= selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].IDSeccionesProvinciales;
-  //SeccionProvincial.value = seleccionProvincial.IDSeccionesProvinciales;
-  SeccionProvincial.value = null;
-
+  const seleccionProvincial= selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].IDSeccionProvincial;
+  SeccionProvincial.value = seleccionProvincial;
+  console.log("SeccionProvincial : ", SeccionProvincial.value);
 
   const secciones = selectedCargo.Distritos.find((D) => D.IdDistrito == selectedDistritoId ).SeccionesProvinciales[0].Secciones;
   console.log('SECCIONES :',secciones)
@@ -142,6 +172,13 @@ function cargarDistritos() {
       console.log('URL FETCH',`${urlServicio}?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${valorPredeterminado}&mesaId=${valorPredeterminado}`)
       const response = await fetch(`${urlServicio}?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${valorPredeterminado}&mesaId=${valorPredeterminado}`);
       if (response.ok) {
+        /////////pantalla inicio//////////////////////
+        const mainElement = document.querySelector('main');
+        mainElement.style.display = 'block';
+  
+        const contenedorImagenElement = document.getElementById('contenedorImagen');
+        contenedorImagenElement.style.display = 'none';
+        ///////////////////////////////////////////////////
         resultados= await response.json();
         console.log('Resultados filtrados:', resultados);
         const titulo = document.getElementById('titulo');
@@ -164,6 +201,10 @@ function cargarDistritos() {
         electores.innerHTML = `${resultados.estadoRecuento.cantidadElectores}`;
         const participacion = document.getElementById('participacion_escriturado_valor');
         participacion.innerHTML = `${resultados.estadoRecuento.participacionPorcentaje}`;
+
+        var contenedorMapa = document.getElementById(`maps`);
+        var svgMapa = provincias[distritoId];
+        contenedorMapa.innerHTML = svgMapa;
 
       } else {
         document.getElementById('mensajeAdvertencia').style.display = 'none';
@@ -214,23 +255,6 @@ async function agregarInforme() {
   }
 }
 // ////////////////////GRAFICAS////////////////////////////////
-// import { coloresAgrupaciones } from './common.js'; NO FUNCIONA!
-const coloresAgrupaciones = {
-     0: { colorPleno: 'rgb(255, 0, 0)', colorSuave: 'rgba(255, 0, 0, 0.3)' }, // gráfica-rojo
-     1: { colorPleno: 'rgb(0, 255, 0)', colorSuave: 'rgba(0, 255, 0, 0.3)' }, // gráfica-verde
-     2: { colorPleno: 'rgb(0, 0, 255)', colorSuave: 'rgba(0, 0, 255, 0.3)' }, // gráfica-azul
-     3: { colorPleno: 'rgb(255, 255, 0)', colorSuave: 'rgba(255, 255, 0, 0.3)' }, // gráfica-amarillo
-     4: { colorPleno: 'rgb(255, 165, 0)', colorSuave: 'rgba(255, 165, 0, 0.3)' }, // gráfica-naranja
-     5: { colorPleno: 'rgb(148, 0, 211)', colorSuave: 'rgba(148, 0, 211, 0.3)' }, // gráfica-violeta
-     6: { colorPleno: 'rgb(0, 255, 255)', colorSuave: 'rgba(0, 255, 255, 0.3)' }, // gráfico-cian
-     7: { colorPleno: 'rgb(255, 0, 255)', colorSuave: 'rgba(255, 0, 255, 0.3)' }, // gráfica-magenta
-     8: { colorPleno: 'rgb(255, 182, 193)', colorSuave: 'rgba(255, 182, 193, 0.3)' }, // gráfica-rosa
-     9: { colorPleno: 'rgb(154, 205, 50)', colorSuave: 'rgba(154, 205, 50, 0.3)' }, // grafica-amarillo-verde
-     10: { colorPleno: 'rgb(0, 0, 128)', colorSuave: 'rgba(0, 0, 128, 0.3)' }, // gráfica-azul-marino
-     11: { colorPleno: 'rgb(139, 69, 19)', colorSuave: 'rgba(139, 69, 19, 0.3)' }, // grafica-cafe
-     12: { colorPleno: 'rgb(64, 64, 64)', colorSuave: 'rgba(64, 64, 64, 0.3)' } // gráfica-gris-oscuro
-   }
-
    function grafico(resultados) {
     const valoresTotalizadosPositivos = resultados.valoresTotalizadosPositivos;
     console.log('JSON para Grafica:', valoresTotalizadosPositivos);
@@ -249,6 +273,9 @@ const coloresAgrupaciones = {
 
       const titulo_Barra = document.createElement('div');
       titulo_Barra.className = `titulo_barra${i + 1}`;
+      titulo_Barra.style.display = 'flex'; 
+      titulo_Barra.style.justifyContent = 'space-between'; 
+      titulo_Barra.style.margin = '10px';
       titulo_Barra.innerHTML = `
         <p id="nombreAgrupacion${i + 1}">${nombreAgrupacion}</p>
         <div class="porcent${i + 1}">
